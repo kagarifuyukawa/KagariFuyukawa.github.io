@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="banner" onclick="bannerClick()">
+    <img src="./icon/banner-image.jpg" alt="Banner Image" class="banner-image">
+    <div class="banner-text">
+      <h1>My GitHub Project</h1>
+      <p>Explore my test project on github.</p>
+    </div>
+  </header>
+
+  <main id="projects">
+    <div class="project-card" ondblclick="redirectTo('https://github.com/kagarifuyukawa/kagarifuyukawa.github.io')">
+      <div class="project-icon">
+        <img src="./icon/icon1.png" alt="icon project">
+      </div>
+      <div class="project-info">
+        <h2>This Page Source</h2>
+        <p>This is source code from this page. Double-click to redirect.</p>
+      </div>
+    </div>
+    <div class="project-card" ondblclick="redirectTo('https://github.com/kagarifuyukawa/kagarifuyukawa')">
+      <div class="project-icon">
+        <img src="./icon/icon2.png" alt="Icon for Project">
+      </div>
+      <div class="project-info">
+        <h2>My Stats</h2>
+        <p>See my github stats on github. Double-click to redirect.</p>
+      </div>
+    </div>
+    <div class="project-card" ondblclick="redirectTo('https://github.com/kagarifuyukawa')">
+      <div class="project-icon">
+        <img src="./icon/icon3.png" alt="Icon for Project">
+      </div>
+      <div class="project-info">
+        <h2>My Github</h2>
+        <p>See my github profile. Double-click to redirect.</p>
+      </div>
+    </div>
+    <div class="project-card" ondblclick="redirectTo('https://github.com/kagarifuyukawa/kagarifuyukawa')">
+      <div class="project-icon">
+        <img src="./icon/icon4.png" alt="Icon for Project B">
+      </div>
+      <div class="project-info">
+        <h2>Nothing</h2>
+        <p>Nothing. Double-click to redirect.</p>
+      </div>
+    </div>
+    <div class="project-card" ondblclick="redirectTo('chatgpt.com')">
+      <div class="project-icon">
+        <img src="./icon/icon5.png" alt="Icon for Project B">
+      </div>
+      <div class="project-info">
+        <h2>ChatGPT</h2>
+        <p>See my coding assistant. Double-click to redirect.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 by Kagari Fuyukawa.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
