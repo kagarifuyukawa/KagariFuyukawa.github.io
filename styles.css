@@ -1,0 +1,132 @@
+:root {
+  --kagariLightGray: #e0e0e0;
+  --kagariBlueGray: #8a9baa;
+  --kagariSoftGray: #c0c7cd;
+  --kagariDarkGray: #1a1a1a;
+  --buttonAccent: #617b9a;
+  --bannerText: #eaeff2;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('./icon/background-image.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  color: var(--kagariLightGray);
+  overflow-x: hidden;
+}
+
+.banner {
+  position: relative;
+  text-align: center;
+  padding: 50px 20px;
+  background-color: var(--kagariBlueGray);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 20px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.banner:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.banner-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  opacity: 0.4;
+}
+
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--bannerText);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.banner.clicked {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  padding: 20px;
+}
+
+@media (min-width: 768px) {
+  main {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.project-card {
+  display: flex;
+  align-items: center;
+  background-color: var(--buttonAccent);
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 450px;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.project-icon {
+  flex-shrink: 0;
+  width: 70px;
+  height: 70px;
+  background-color: var(--kagariSoftGray);
+  border-radius: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+.project-icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20%;
+}
+
+.project-info {
+  color: var(--kagariLightGray);
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--kagariBlueGray);
+  color: white;
+  margin-top: 20px;
+  border-radius: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  width: 85%; /* Adjust as needed to match the banner size */
+  max-width: 800px; /* Matches the maximum width of the banner */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
