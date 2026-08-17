@@ -1,71 +1,591 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="id" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090b">
+  <meta name="description" content="MOKU — monochrome developer portfolio for code, anime, manga, novels, games, camping and travel.">
+  <title>MOKU — Developer Portfolio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="banner" onclick="bannerClick()">
-    <img src="./icon/banner-image.jpg" alt="Banner Image" class="banner-image">
-    <div class="banner-text">
-      <h1>My GitHub Project</h1>
-      <p>Explore my test project on github.</p>
+  <div class="progress" id="progress" role="progressbar" aria-label="Scroll progress" aria-valuemin="0" aria-valuemax="100"></div>
+
+  <div id="cursorGlow" aria-hidden="true"></div>
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#home" class="brand" aria-label="MOKU home">
+          <span class="brand-mark">M</span>
+          <span>MOKU</span>
+        </a>
+
+        <div class="navlinks" id="navlinks">
+          <a href="#home" class="active">Home</a>
+          <a href="#about">About</a>
+          <a href="#links">Links</a>
+          <a href="#projects">Projects</a>
+          <a href="#library">Library</a>
+          <a href="#desk">Desk</a>
+          <a href="#notes">Notes</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#lab">Lab</a>
+        </div>
+
+        <div class="nav-actions">
+          <button class="icon-btn" id="searchBtn" aria-label="Open global search"></button>
+          <button class="icon-btn" id="themeBtn" aria-label="Toggle theme"></button>
+          <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false" aria-controls="navlinks"></button>
+          <button class="icon-btn" id="cmdBtn" aria-label="Open command palette"></button>
+        </div>
+      </nav>
     </div>
   </header>
 
-  <main id="projects">
-    <div class="project-card" ondblclick="redirectTo('https://github.com/kagarifuyukawa/kagarifuyukawa.github.io')">
-      <div class="project-icon">
-        <img src="./icon/icon1.png" alt="icon project">
+  <main>
+    <!-- 00 / HOME -->
+    <section class="hero container" id="home">
+      <div class="hero-copy-block reveal">
+        <div class="eyebrow"><i class="dot"></i> developer · otaku · explorer</div>
+        <h1>Build things.<br><span>Chase stories.</span></h1>
+        <p class="hero-copy">
+          Halo, aku <strong>Moku</strong> — freelancer &amp; developer yang suka mengubah ide
+          menjadi sesuatu yang bisa dipakai. Di luar kode: anime, manga, light novel, games,
+          camping, perjalanan, dan terlalu banyak tab browser.
+        </p>
+
+        <div class="cta">
+          <a class="btn" href="#about">About me <span data-icon="arrow"></span></a>
+          <a class="btn ghost" href="#links">Link tree</a>
+        </div>
+
+        <div class="mini-stats">
+          <div class="stat"><b id="projectCount">06</b><span>selected projects</span></div>
+          <div class="stat"><b>∞</b><span>rabbit holes</span></div>
+          <div class="stat"><b id="year">2026</b><span>and still learning</span></div>
+        </div>
       </div>
-      <div class="project-info">
-        <h2>This Page Source</h2>
-        <p>This is source code from this page. Double-click to redirect.</p>
+
+      <div class="hero-art reveal">
+        <div class="hero-ring" aria-hidden="true"></div>
+        <img class="portrait" id="heroPortrait" src="" alt="Monochrome anime-inspired visual">
+        <div class="float-card float-a draggable" id="floatCardA">
+          <b>status: online</b>
+          <span>probably coding at 02:00</span>
+        </div>
+        <div class="float-card float-b draggable" id="floatCardB">
+          <b>currently</b>
+          <span>☕ + keyboard + manga</span>
+        </div>
       </div>
-    </div>
-    <div class="project-card" ondblclick="redirectTo('https://github.com/kagarifuyukawa/kagarifuyukawa')">
-      <div class="project-icon">
-        <img src="./icon/icon2.png" alt="Icon for Project">
+    </section>
+
+    <!-- 01 / ABOUT -->
+    <section id="about">
+      <div class="container reveal about">
+        <div class="about-media">
+          <img class="about-img" id="aboutPortrait" src="" alt="Monochrome anime-inspired visual, secondary">
+          <div class="media-caption">
+            <span class="status-dot"></span>
+            <span>personal corner of the web</span>
+          </div>
+        </div>
+
+        <div class="about-copy">
+          <div class="kicker">01 · about me</div>
+          <h2>A little corner of the internet.</h2>
+          <p>
+            Portfolio ini sengaja dibuat monochrome: tenang, minimal, sedikit gothic-maid,
+            tetapi tetap terasa seperti ruang kerja developer. Visualnya mengambil nuansa
+            karakter Fuyukawa Kagari — kontras hitam-putih, pita, lace, dan ekspresi lembut —
+            tanpa meniru layout karya aslinya.
+          </p>
+
+          <div class="checks">
+            <div class="check"><b>Developer</b><span>Web · automation · experiments</span></div>
+            <div class="check"><b>Creative</b><span>UI · visual · worldbuilding</span></div>
+            <div class="check"><b>Outdoor</b><span>Camping · hiking · travel</span></div>
+            <div class="check"><b>Otaku</b><span>Anime · manga · LN · games</span></div>
+          </div>
+
+          <div class="cta">
+            <button class="btn" id="copyEmail"><span data-icon="mail"></span> Copy email</button>
+            <a class="btn ghost" href="#links"><span data-icon="arrow"></span> All links</a>
+          </div>
+        </div>
       </div>
-      <div class="project-info">
-        <h2>My Stats</h2>
-        <p>See my github stats on github. Double-click to redirect.</p>
+    </section>
+
+    <!-- 02 / LINK TREE -->
+    <section id="links">
+      <div class="container reveal">
+        <div class="section-head">
+          <div>
+            <div class="kicker">02 · link tree</div>
+            <h2>Find me.</h2>
+          </div>
+          <p class="section-desc">Semua pintu masuk ke dunia kecilku.</p>
+        </div>
+        <div class="linktree" id="linktree"></div>
       </div>
-    </div>
-    <div class="project-card" ondblclick="redirectTo('https://github.com/kagarifuyukawa')">
-      <div class="project-icon">
-        <img src="./icon/icon3.png" alt="Icon for Project">
+    </section>
+
+    <!-- 03 / PROJECTS -->
+    <section id="projects">
+      <div class="container reveal">
+        <div class="section-head">
+          <div>
+            <div class="kicker">03 · selected work</div>
+            <h2>Things I build.</h2>
+          </div>
+          <p class="section-desc">Project bisa difilter dan diklik untuk membuka detail.</p>
+        </div>
+        <div class="project-filter" id="filters"></div>
+        <div class="grid" id="projectGrid"></div>
       </div>
-      <div class="project-info">
-        <h2>My Github</h2>
-        <p>See my github profile. Double-click to redirect.</p>
+    </section>
+
+    <!-- 04 / PERSONAL DATABASE -->
+    <section id="library">
+      <div class="container reveal">
+        <div class="section-head">
+          <div>
+            <div class="kicker">04 · personal database</div>
+            <h2>Otaku shelf.</h2>
+          </div>
+          <p class="section-desc">Hal-hal yang biasanya mengisi waktu luang.</p>
+        </div>
+
+        <div class="dashboard">
+          <div class="panel database-panel">
+            <div class="panel-heading">
+              <div>
+                <span class="panel-eyebrow">current database</span>
+                <h3>Currently into</h3>
+              </div>
+              <span class="panel-orbit" data-icon="manga"></span>
+            </div>
+
+            <div class="list">
+              <div class="list-item"><b>Anime</b><span>Slice of Life / Comedy</span></div>
+              <div class="list-item"><b>Manga</b><span>Wholesome &amp; heartwarming</span></div>
+              <div class="list-item"><b>Light Novel</b><span>Slow burn / character-driven</span></div>
+              <div class="list-item"><b>Games</b><span>Japanese / cozy / RPG</span></div>
+            </div>
+          </div>
+
+          <div class="panel quote-panel">
+            <div class="panel-heading">
+              <div>
+                <span class="panel-eyebrow">tiny thought</span>
+                <h3>Random quote</h3>
+              </div>
+              <span class="panel-orbit" data-icon="spark"></span>
+            </div>
+            <div class="quote" id="quote"></div>
+            <button class="btn ghost compact-btn" id="newQuote">
+              <span data-icon="spark"></span> Another one
+            </button>
+          </div>
+
+          <!-- GitHub Activity -->
+          <div class="panel github-panel" id="githubPanel">
+            <div class="panel-heading">
+              <div class="gh-head">
+                <div>
+                  <span class="panel-eyebrow">version control</span>
+                  <h3>GitHub activity</h3>
+                </div>
+              </div>
+              <span class="panel-orbit" data-icon="github"></span>
+            </div>
+
+            <div class="gh-stats" id="ghStats">
+              <div class="gh-stat"><b>—</b><span>Repos</span></div>
+              <div class="gh-stat"><b>—</b><span>Followers</span></div>
+              <div class="gh-stat"><b>—</b><span>Stars</span></div>
+              <div class="gh-stat"><b>—</b><span>Commits (recent)</span></div>
+            </div>
+
+            <div class="gh-graph" id="ghGraph" aria-hidden="true"></div>
+            <div class="gh-legend">
+              <span>less</span>
+              <i class="gh-cell" data-level="0"></i><i class="gh-cell" data-level="1"></i>
+              <i class="gh-cell" data-level="2"></i><i class="gh-cell" data-level="3"></i>
+              <i class="gh-cell" data-level="4"></i>
+              <span>more</span>
+            </div>
+
+            <div class="gh-repos" id="ghRepos"></div>
+            <div class="gh-status" id="ghStatus"><span class="status-dot"></span> Loading GitHub data…</div>
+          </div>
+
+          <!-- Music Player -->
+          <div class="panel music-panel" id="musicPanel">
+            <div class="panel-heading">
+              <div>
+                <span class="panel-eyebrow">now playing</span>
+                <h3>Little player</h3>
+              </div>
+              <span class="panel-orbit" data-icon="sound"></span>
+            </div>
+
+            <div class="music-body">
+              <div class="music-art" id="musicArt"><span data-icon="sound"></span></div>
+              <div class="music-info">
+                <b id="musicTitle">No track loaded</b>
+                <span id="musicArtist">Add tracks in CONFIG.music</span>
+              </div>
+            </div>
+
+            <div class="music-progress">
+              <span id="musicCurrentTime">0:00</span>
+              <div class="music-bar" id="musicBar"><i id="musicBarFill"></i></div>
+              <span id="musicDuration">0:00</span>
+            </div>
+
+            <div class="music-controls">
+              <button class="music-btn" id="musicShuffle" aria-label="Shuffle" title="Shuffle"><span data-icon="shuffle"></span></button>
+              <button class="music-btn" id="musicPrev" aria-label="Previous" title="Previous"><span data-icon="prev"></span></button>
+              <button class="music-btn is-play" id="musicPlay" aria-label="Play"><span data-icon="play"></span></button>
+              <button class="music-btn" id="musicNext" aria-label="Next" title="Next"><span data-icon="next"></span></button>
+              <button class="music-btn" id="musicRepeat" aria-label="Repeat" title="Repeat"><span data-icon="repeat"></span></button>
+            </div>
+
+            <div class="music-volume">
+              <span data-icon="sound"></span>
+              <input type="range" id="musicVolume" min="0" max="100" value="70" aria-label="Volume">
+            </div>
+
+            <div class="music-playlist" id="musicPlaylist"></div>
+            <div class="music-note"><span data-icon="bulb"></span><span>Music won't autoplay — tap play whenever you're ready.</span></div>
+          </div>
+        </div>
+
+        <div class="hobby-grid">
+          <div class="hobby"><div class="hobby-icon" data-icon="code"></div><b>Coding</b><span>build · debug · repeat</span></div>
+          <div class="hobby"><div class="hobby-icon" data-icon="anime"></div><b>Anime</b><span>comfort shows</span></div>
+          <div class="hobby"><div class="hobby-icon" data-icon="manga"></div><b>Manga</b><span>one more chapter</span></div>
+          <div class="hobby"><div class="hobby-icon" data-icon="book"></div><b>Light Novel</b><span>slow burn stories</span></div>
+          <div class="hobby"><div class="hobby-icon" data-icon="game"></div><b>Games</b><span>Japanese · cozy · RPG</span></div>
+          <div class="hobby"><div class="hobby-icon" data-icon="camp"></div><b>Camping</b><span>offline mode</span></div>
+          <div class="hobby"><div class="hobby-icon" data-icon="travel"></div><b>Travel</b><span>new places</span></div>
+        </div>
       </div>
-    </div>
-    <div class="project-card" ondblclick="redirectTo('https://github.com/kagarifuyukawa/kagarifuyukawa')">
-      <div class="project-icon">
-        <img src="./icon/icon4.png" alt="Icon for Project">
+    </section>
+
+    <!-- 05 / MOKU DESK -->
+    <section id="desk">
+      <div class="container reveal">
+        <div class="section-head">
+          <div>
+            <div class="kicker">05 · digital desk</div>
+            <h2>Moku desk.</h2>
+          </div>
+          <p class="section-desc">Objek bisa diklik atau di-drag. Posisi tersimpan otomatis.</p>
+        </div>
+
+        <div class="desk-wrap" id="deskWrap">
+          <div class="desk-hint"><span data-icon="bulb"></span> drag objects · click to open</div>
+          <button class="desk-reset" id="deskReset"><span data-icon="settings"></span> Reset layout</button>
+        </div>
       </div>
-      <div class="project-info">
-        <h2>Nothing</h2>
-        <p>Nothing. Double-click to redirect.</p>
+    </section>
+
+    <!-- 06 / NOTES -->
+    <section id="notes">
+      <div class="container reveal">
+        <div class="section-head">
+          <div>
+            <div class="kicker">06 · knowledge base</div>
+            <h2>Moku notes.</h2>
+          </div>
+          <p class="section-desc">Catatan singkat lintas topik. Klik untuk membaca.</p>
+        </div>
+
+        <div class="notes-filter" id="notesFilter"></div>
+        <div class="notes-grid" id="notesGrid"></div>
       </div>
-    </div>
-    <div class="project-card" ondblclick="redirectTo('https://chatgpt.com')">
-      <div class="project-icon">
-        <img src="./icon/icon5.png" alt="Icon for Project">
+    </section>
+
+    <!-- 07 / GALLERY -->
+    <section id="gallery">
+      <div class="container reveal">
+        <div class="section-head">
+          <div>
+            <div class="kicker">07 · visual archive</div>
+            <h2>Little Kagari corner.</h2>
+          </div>
+          <p class="section-desc">Gambar diambil dari CDN/storage; chibi sementara memakai emoji.</p>
+        </div>
+
+        <div class="gallery" id="galleryGrid"></div>
+
+        <div class="chibi-strip">
+          <div class="chibi-label">
+            <span class="kicker">tiny companions</span>
+            <b>Chibi slots</b>
+            <small>Replace emoji → CDN image</small>
+          </div>
+          <div class="chibi-list" id="chibiList"></div>
+        </div>
       </div>
-      <div class="project-info">
-        <h2>ChatGPT</h2>
-        <p>See my coding assistant. Double-click to redirect.</p>
+    </section>
+
+    <!-- 06 / LAB -->
+    <section id="lab">
+      <div class="container reveal">
+        <div class="section-head">
+          <div>
+            <div class="kicker">08 · workshop</div>
+            <h2>Little lab.</h2>
+          </div>
+          <p class="section-desc">Terminal dan kontrol kecil untuk menjelajah portfolio.</p>
+        </div>
+
+        <div class="lab-shell">
+          <div class="lab-terminal terminal-box" id="terminal">
+            <div class="terminal-bar">
+              <span class="terminal-dots"><i></i><i></i><i></i></span>
+              <span class="terminal-title"><span class="status-dot"></span> moku@portfolio:~</span>
+              <span class="terminal-hint">type <b>help</b></span>
+            </div>
+
+            <div class="terminal-content" id="terminalOutput">
+              <div class="terminal-line terminal-dim">MOKU OS v4.0 — portfolio shell</div>
+              <div class="terminal-line"><span class="prompt">guest@moku:~$</span> help</div>
+              <div class="terminal-line terminal-dim">help · about · projects · links · anime · games · camp · secret · neofetch · clear</div>
+              <div class="terminal-input">
+                <span class="prompt">guest@moku:~$</span>
+                <input id="terminalInput" autocomplete="off" spellcheck="false" aria-label="Terminal input">
+                <span class="terminal-caret"></span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="lab-controls panel">
+            <div class="panel-heading">
+              <div>
+                <span class="panel-eyebrow">quick controls</span>
+                <h3>Little controls</h3>
+              </div>
+              <span class="panel-orbit" data-icon="settings"></span>
+            </div>
+
+            <div class="control-list">
+              <button class="control-row" id="zenMode">
+                <span class="control-icon" data-icon="zen"></span>
+                <span class="control-copy"><b>Zen mode</b><small>quiet reading view</small></span>
+                <span class="control-state" id="zenState">OFF</span>
+              </button>
+
+              <button class="control-row" id="particleToggle">
+                <span class="control-icon" data-icon="spark"></span>
+                <span class="control-copy"><b>Particles</b><small>ambient background</small></span>
+                <span class="toggle is-on" id="particleState"><i></i></span>
+              </button>
+
+              <button class="control-row" id="soundToggle">
+                <span class="control-icon" data-icon="sound"></span>
+                <span class="control-copy"><b>Sound FX</b><small>tiny interface sounds</small></span>
+                <span class="toggle is-on" id="soundState"><i></i></span>
+              </button>
+
+              <button class="control-row" id="settingsOpen">
+                <span class="control-icon" data-icon="settings"></span>
+                <span class="control-copy"><b>Preferences</b><small>theme &amp; motion settings</small></span>
+                <span class="control-chevron">›</span>
+              </button>
+            </div>
+
+            <div class="lab-tip">
+              <span data-icon="bulb"></span>
+              <p><b>Try this:</b> drag the floating cards, then type <code>neofetch</code>.</p>
+            </div>
+          </aside>
+        </div>
+
+        <div class="lab-foot">
+          <span><i class="status-dot"></i> systems nominal</span>
+          <span>local-first · no tracking · HTML/CSS/JS</span>
+        </div>
       </div>
-    </div>
+    </section>
   </main>
 
   <footer>
-    <p>&copy; 2024 by Kagari Fuyukawa.</p>
+    <div class="container footer-row">
+      <div>© <span id="footerYear"></span> <b>MOKU</b>. Built with HTML, CSS &amp; JS.</div>
+      <div>There may be something hidden here.</div>
+    </div>
   </footer>
+
+  <!-- Floating utility dock -->
+  <div class="floating-tools" aria-label="Quick utilities">
+    <button id="localClock" class="floating-tool draggable" title="Show your browser timezone">
+      <span class="floating-icon" data-icon="clock"></span>
+      <span class="floating-copy">
+        <small>LOCAL TIME</small>
+        <strong>00:00:00</strong>
+        <span>---</span>
+      </span>
+    </button>
+
+    <button id="focusToggle" class="floating-tool" title="Toggle focus mode">
+      <span class="floating-icon" data-icon="focus"></span>
+      <span class="floating-copy">
+        <small>FOCUS</small>
+        <strong>OFF</strong>
+        <span>quiet workspace</span>
+      </span>
+    </button>
+  </div>
+
+  <!-- Generic detail modal -->
+  <div class="modal-backdrop" id="modal" aria-hidden="true">
+    <div class="modal" id="modalInner"></div>
+  </div>
+
+  <!-- Command palette -->
+  <div class="modal-backdrop" id="commandModal" aria-hidden="true">
+    <div class="modal command">
+      <div class="modal-head">
+        <div>
+          <div class="kicker">quick navigation</div>
+          <h2>Command palette</h2>
+        </div>
+        <button class="close" data-close="commandModal" aria-label="Close">×</button>
+      </div>
+      <input id="commandInput" placeholder="Ketik: projects, links, lab..." autocomplete="off">
+      <div class="commands" id="commands"></div>
+    </div>
+  </div>
+
+  <!-- Global search -->
+  <div class="modal-backdrop" id="searchModal" aria-hidden="true">
+    <div class="modal command">
+      <div class="modal-head">
+        <div>
+          <div class="kicker">global search</div>
+          <h2>Search everything</h2>
+        </div>
+        <button class="close" data-close="searchModal" aria-label="Close">×</button>
+      </div>
+      <input id="searchInput" placeholder="Cari project, notes, links..." autocomplete="off">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <!-- Note detail -->
+  <div class="modal-backdrop" id="noteModal" aria-hidden="true">
+    <div class="modal note-modal" id="noteModalInner"></div>
+  </div>
+
+  <!-- Preferences -->
+  <div class="modal-backdrop" id="settingsModal" aria-hidden="true">
+    <div class="modal settings-card">
+      <div class="modal-head">
+        <div>
+          <div class="kicker">workspace settings</div>
+          <h2>Preferences</h2>
+          <p class="modal-subtitle">Atur tampilan dan ambience sesuai suasana.</p>
+        </div>
+        <button class="close" data-close="settingsModal" aria-label="Close">×</button>
+      </div>
+
+      <div class="settings-list">
+        <div class="setting-row">
+          <span class="setting-icon" data-icon="sun"></span>
+          <span class="setting-copy"><b>Appearance</b><small>Dark / light interface</small></span>
+          <button class="setting-action" id="settingTheme"><span>Dark</span><span data-icon="arrow"></span></button>
+        </div>
+
+        <div class="setting-row">
+          <span class="setting-icon" data-icon="zen"></span>
+          <span class="setting-copy"><b>Reduced motion</b><small>Minimize animations</small></span>
+          <button class="setting-toggle" id="settingMotion" aria-label="Toggle reduced motion"><i></i></button>
+        </div>
+
+        <div class="setting-row">
+          <span class="setting-icon" data-icon="spark"></span>
+          <span class="setting-copy"><b>Particles</b><small>Ambient background dots</small></span>
+          <button class="setting-toggle is-on" id="settingParticles" aria-label="Toggle particles"><i></i></button>
+        </div>
+
+        <div class="setting-row">
+          <span class="setting-icon" data-icon="sound"></span>
+          <span class="setting-copy"><b>Sound FX</b><small>Tiny interface feedback</small></span>
+          <button class="setting-toggle is-on" id="settingSound" aria-label="Toggle sound"><i></i></button>
+        </div>
+      </div>
+
+      <div class="settings-footer">
+        <div>
+          <span class="status-dot"></span>
+          <span>Preferences are saved locally.</span>
+        </div>
+        <button class="text-action" id="settingReset"><span data-icon="settings"></span> Reset preferences</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secret room -->
+  <div class="secret-room" id="secretRoom" aria-hidden="true">
+    <div class="secret-room-inner">
+      <button class="secret-close" id="secretClose" aria-label="Close secret room">×</button>
+      <div class="secret-kicker"><span class="secret-pulse"></span> moonlight protocol · secret room</div>
+      <div class="secret-symbol">✦</div>
+      <h2>Welcome to the quiet side.</h2>
+      <p class="secret-lead">You found the room that was never listed in the navigation.</p>
+
+      <div class="secret-grid">
+        <article class="secret-card">
+          <span class="secret-card-icon" data-icon="moon"></span>
+          <b>Moonlight cache</b>
+          <p>A quiet corner for late-night coding, quiet chapters and unfinished ideas.</p>
+        </article>
+        <article class="secret-card">
+          <span class="secret-card-icon" data-icon="game"></span>
+          <b>Player status</b>
+          <p>Game backlog: <strong>∞</strong><br>Willpower: <strong>404</strong></p>
+        </article>
+        <article class="secret-card">
+          <span class="secret-card-icon" data-icon="camp"></span>
+          <b>Offline protocol</b>
+          <p>Tent, coffee, flashlight, book. Internet optional.</p>
+        </article>
+      </div>
+
+      <div class="secret-console">
+        <div><span class="status-dot"></span> SECRET ROOM // LOCAL</div>
+        <p id="secretMessage">Protocol accepted. There is nothing here you absolutely need. That's the point.</p>
+        <button class="btn secret-btn" id="secretShuffle"><span data-icon="spark"></span> Randomize the room</button>
+      </div>
+
+      <div class="secret-footer">hint: the room remembers that you found it.</div>
+    </div>
+  </div>
+
+  <!-- Chibi companion -->
+  <div class="chibi-companion" id="chibiCompanion">
+    <div class="chibi-bubble" id="chibiBubble"></div>
+    <button class="chibi-avatar" id="chibiAvatar" aria-label="Chibi companion" title="Say hi"></button>
+  </div>
+
+  <!-- Zen mode screen -->
+  <div class="zen-screen" id="zenScreen">
+    <button class="zen-exit" id="zenExit" aria-label="Exit zen mode">×</button>
+    <div class="zen-clock" id="zenClock">00:00</div>
+    <div class="zen-words"><span>breathe.</span><span>focus.</span><span>create.</span></div>
+    <div class="zen-hint">press <b style="color:var(--text)">esc</b> or click × to exit</div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="konami" id="konami">SECRET MODE UNLOCKED</div>
 
   <script src="script.js"></script>
 </body>
